@@ -17,8 +17,11 @@ player = drawpad.create_oval(390,580,410,600, fill="red")
 
 # Create your "enemies" here, before the class
 global direction
-x1, y1, x2, y2 = drawpad.coords(player)
-
+direction = 10
+direction2 = -10
+enemy = drawpad.create_rectangle(150,250,175,275, fill='orange')
+enemy2 = drawpad.create_rectangle(150,150,175,140, fill='pink')
+enemy3 = drawpad.create_rectangle(175, 165, 135, 135, fill='purple')
 class MyApp:
 	def __init__(self, parent):
        	    global drawpad
@@ -51,15 +54,7 @@ class MyApp:
        	    self.left.grid(row=0,column=2)
        	    self.left.bind("<Button-1>", self.leftClicked)
        	    
-       	    
-       	    
-       	    
-       	    
-       	    
-       	    
-       	    
-       	    
-       	    # No need to edit this - just includes the drawpad into our frame
+       	 # No need to edit this - just includes the drawpad into our frame
        	    drawpad.pack(side=RIGHT)
        	    # call the animate function to start our recursion
        	    self.animate()
@@ -68,10 +63,33 @@ class MyApp:
 	    global drawpad
 	    global player
 	    # Remember to include your "enemies" with "global"
-	    
-	    # Uncomment this when you're ready to test out your animation!
-	    #drawpad.after(10,self.animate)
-		
+	    global enemy
+    # Enemy 1
+            x1, y1, x2, y2 = drawpad.coords(enemy)
+            if x2 > drawpad.winfo_width(): 
+                drawpad.move(enemy,-800,0)
+            elif x1 < 0:
+                    direction = 5
+            drawpad.move(enemy,10,0)
+            drawpad.after(10,self.animate)
+    # Enemy 2    
+	    global enemy2
+	    x1, y1, x2, y2 = drawpad.coords(enemy2)
+            if x2 > drawpad.winfo_width(): 
+                drawpad.move(enemy2,-800,0)
+            elif x1 < 0:
+                direction = 10
+            drawpad.move(enemy2,8,0)
+            
+            global enemy3
+	    x1, y1, x2, y2 = drawpad.coords(enemy3)
+            if x2 > drawpad.winfo_width(): 
+                drawpad.move(enemy3,-800,0)
+            elif x1 < 0:
+                direction = 10
+            drawpad.move(enemy3,15,0)
+	
+	
 	def upClicked(self, event):   
 	   global oval
 	   global player
